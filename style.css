@@ -70,3 +70,234 @@ footer{background:#0e1b30;color:#a9b9cb}.footer-inner{max-width:1200px;margin:au
 @media (max-width: 760px) {
   .brands-track img.brand-logo { height: 52px !important; width: 120px !important; }
 }
+
+
+
+/* EXPERIENCE SECTION LAYOUT */
+.experience-layout {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 38px;
+  align-items: start;
+  margin: 10px 0 35px;
+}
+
+.experience-layout .timeline {
+  max-width: none;
+  margin: 10px 0 0 9px;
+}
+
+/* TIMELINE FLOATING POINTS */
+.timeline-item::before {
+  animation: timelineFloat 2.5s ease-in-out infinite;
+}
+
+.timeline-item:nth-child(2)::before {
+  animation-delay: .5s;
+}
+
+.timeline-item:nth-child(3)::before {
+  animation-delay: 1s;
+}
+
+@keyframes timelineFloat {
+  0%, 100% {
+    transform: translateY(0);
+    box-shadow: 0 0 0 0 #49b5d400;
+  }
+  50% {
+    transform: translateY(-7px);
+    box-shadow: 0 0 0 7px #49b5d422;
+  }
+}
+
+/* CAREER GROWTH CARD */
+.career-growth {
+  position: sticky;
+  top: 100px;
+  padding: 25px;
+  border: 1px solid #e2eaf2;
+  border-radius: 16px;
+  background: linear-gradient(145deg, #fff, #f5f9fc);
+  box-shadow: 0 12px 35px #142b4c0d;
+  overflow: hidden;
+}
+
+.growth-heading h2 {
+  font: 800 25px Manrope, sans-serif;
+  color: var(--navy);
+  margin: 7px 0;
+}
+
+.growth-heading p {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.growth-chart {
+  margin-top: 24px;
+  position: relative;
+}
+
+.growth-label {
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .15em;
+  color: #8293a7;
+  margin-bottom: 8px;
+}
+
+.growth-chart svg {
+  display: block;
+  width: 100%;
+  overflow: visible;
+}
+
+.growth-grid path {
+  fill: none;
+  stroke: #dce7ef;
+  stroke-width: 1;
+  stroke-dasharray: 4 6;
+}
+
+/* DRAWING ANIMATION */
+.growth-line {
+  fill: none;
+  stroke: url(#growthGradient);
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: drawGrowth 3s ease forwards .3s;
+}
+
+@keyframes drawGrowth {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* GRAPH AREA */
+.growth-area {
+  fill: url(#growthArea);
+  opacity: 0;
+  animation: areaReveal 2s ease forwards 1s;
+}
+
+@keyframes areaReveal {
+  to {
+    opacity: 1;
+  }
+}
+
+/* GRAPH POINT ANIMATION */
+.growth-points circle {
+  fill: #fff;
+  stroke: #2386b5;
+  stroke-width: 3;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: pointPulse 2s ease-in-out infinite;
+}
+
+.growth-points circle:nth-child(2) {
+  animation-delay: .3s;
+}
+
+.growth-points circle:nth-child(3) {
+  animation-delay: .6s;
+}
+
+.growth-points circle:nth-child(4) {
+  animation-delay: .9s;
+}
+
+.growth-points circle:nth-child(5) {
+  animation-delay: 1.2s;
+}
+
+@keyframes pointPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.4); }
+}
+
+/* YEAR LABELS */
+.growth-axis text {
+  font: 700 10px "DM Sans", sans-serif;
+  fill: #8494a7;
+}
+
+/* GRAPH FOOTER */
+.growth-footer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  padding-top: 15px;
+  border-top: 1px solid #e4ebf2;
+}
+
+.growth-footer div {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.growth-footer b {
+  color: #247eae;
+  font: 800 13px Manrope, sans-serif;
+}
+
+.growth-footer span {
+  color: #718196;
+  font-size: 10px;
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 900px) {
+  .experience-layout {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .career-growth {
+    position: relative;
+    top: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .career-growth {
+    padding: 17px;
+  }
+
+  .growth-heading h2 {
+    font-size: 21px;
+  }
+
+  .growth-footer {
+    gap: 5px;
+  }
+
+  .growth-footer span {
+    font-size: 9px;
+  }
+}
+
+/* REDUCED MOTION ACCESSIBILITY */
+@media (prefers-reduced-motion: reduce) {
+  .timeline-item::before,
+  .growth-line,
+  .growth-area,
+  .growth-points circle {
+    animation: none;
+  }
+
+  .growth-line {
+    stroke-dashoffset: 0;
+  }
+
+  .growth-area {
+    opacity: 1;
+  }
+}
