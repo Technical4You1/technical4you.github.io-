@@ -188,3 +188,101 @@ document.addEventListener('DOMContentLoaded', () => {
   resize();
   loop();
 });
+
+
+
+/* ======================================
+   LIVE SAP CAREER EXPERIENCE COUNTER
+   Career start: 02 November 2023
+====================================== */
+
+function updateCareerExperience() {
+
+  // Your actual career starting date
+  const startDate = new Date(2023, 10, 2);
+
+  const now = new Date();
+
+  if (now < startDate) return;
+
+  // Calculate completed years
+  let years = now.getFullYear() - startDate.getFullYear();
+
+  let cursor = new Date(startDate);
+  cursor.setFullYear(startDate.getFullYear() + years);
+
+  if (cursor > now) {
+    years--;
+    cursor = new Date(startDate);
+    cursor.setFullYear(startDate.getFullYear() + years);
+  }
+
+  // Calculate completed months
+  let months =
+    (now.getFullYear() - cursor.getFullYear()) * 12 +
+    now.getMonth() - cursor.getMonth();
+
+  let monthCursor = new Date(cursor);
+  monthCursor.setMonth(cursor.getMonth() + months);
+
+  if (monthCursor > now) {
+    months--;
+    monthCursor = new Date(cursor);
+    monthCursor.setMonth(cursor.getMonth() + months);
+  }
+
+  // Calculate remaining days using calendar dates
+  const todayUTC = Date.UTC(
+    now.getFullYear(), now.getMonth(), now.getDate()
+  );
+
+  const monthUTC = Date.UTC(
+    monthCursor.getFullYear(),
+    monthCursor.getMonth(),
+    monthCursor.getDate()
+  );
+
+  const days = Math.floor(
+    (todayUTC - monthUTC) / 86400000
+  );
+
+  // Update counter
+  const yearElement = document.getElementById("careerYears");
+  const monthElement = document.getElementById("careerMonths");
+  const dayElement = document.getElementById("careerDays");
+
+  if (yearElement) yearElement.textContent = years;
+  if (monthElement) monthElement.textContent = months;
+  if (dayElement) dayElement.textContent = days;
+
+  // Move graph marker according to current date
+  const graphPath = document.getElementById("careerGrowthPath");
+  const currentPoint = document.getElementById("careerNowPoint");
+
+  if (graphPath && currentPoint) {
+
+    // Graph covers 02 Nov 2023 through 01 Jan 2028
+    const graphEnd = new Date(2028, 0, 1);
+
+    const totalDuration = graphEnd - startDate;
+    const elapsedDuration = now - startDate;
+
+    const progress = Math.max(
+      0,
+      Math.min(1, elapsedDuration / totalDuration)
+    );
+
+    const totalLength = graphPath.getTotalLength();
+    const position = graphPath.getPointAtLength(
+      totalLength * progress
+    );
+
+    currentPoint.setAttribute("cx", position.x);
+    currentPoint.setAttribute("cy", position.y);
+  }
+}
+
+// Run immediately and refresh every minute
+updateCareerExperience();
+setInterval(updateCareerExperience, 60000);
+
