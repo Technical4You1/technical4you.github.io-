@@ -613,3 +613,18 @@ footer{background:#0e1b30;color:#a9b9cb}.footer-inner{max-width:1200px;margin:au
   }
 }
 
+.growth-illustration {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0.12;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.growth-graph {
+  position: relative;
+  z-index: 1;
+}
