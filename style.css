@@ -227,8 +227,3 @@ footer{background:#0e1b30;color:#a9b9cb}.footer-inner{max-width:1200px;margin:au
   .growth-line { stroke-dashoffset: 0; }
   .growth-area { opacity: 1; }
 }
-
-.growth-graph {
-  position: relative;
-  z-index: 1;
-}
