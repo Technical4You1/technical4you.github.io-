@@ -371,6 +371,71 @@
   <button class="tab-btn knowledge-tab" data-page="knowledge" onclick="showPage('knowledge')">
   ✦ Knowledge Hub
 </button>
+
+  <!-- KNOWLEDGE HUB -->
+<section class="page" id="knowledge">
+  <div class="knowledge-hero">
+    <div class="knowledge-label">
+      <span class="knowledge-pulse"></span>
+      COMMUNITY KNOWLEDGE NETWORK
+    </div>
+    <h1>Knowledge <span>Hub</span></h1>
+    <p>
+      Share practical SAP knowledge, publish technical articles,
+      exchange ideas and learn from the community.
+    </p>
+    <div class="knowledge-actions">
+      <button class="knowledge-primary" onclick="openKnowledgeEditor()">
+        + Publish an Article
+      </button>
+      <span>Open community · No account required to publish</span>
+    </div>
+  </div>
+
+  <div class="knowledge-toolbar">
+    <div>
+      <h2>Community Articles</h2>
+      <p>Explore technical experiences, tutorials and discussions.</p>
+    </div>
+    <input id="knowledgeSearch" type="search"
+      placeholder="Search articles..."
+      oninput="filterKnowledgePosts(this.value)">
+  </div>
+
+  <div id="knowledgePosts" class="knowledge-posts">
+    <div class="knowledge-loading">Loading community articles...</div>
+  </div>
+
+  <div id="knowledgeEditor" class="knowledge-editor" hidden>
+    <h2>Publish your knowledge</h2>
+    <label for="postAuthor">Your name</label>
+    <input id="postAuthor" maxlength="60" placeholder="Enter your name">
+
+    <label for="postTitle">Article title</label>
+    <input id="postTitle" maxlength="150" placeholder="Enter an article title">
+
+    <label>Article content</label>
+    <div class="editor-toolbar">
+      <button type="button" onclick="formatKnowledge('bold')"><b>B</b></button>
+      <button type="button" onclick="formatKnowledge('italic')"><i>I</i></button>
+      <button type="button" onclick="formatKnowledge('underline')"><u>U</u></button>
+      <button type="button" onclick="formatKnowledge('insertUnorderedList')">• List</button>
+      <button type="button" onclick="formatKnowledge('insertOrderedList')">1. List</button>
+    </div>
+    <div id="postContent" class="knowledge-content"
+      contenteditable="true" role="textbox"
+      aria-multiline="true" data-placeholder="Write your article here..."></div>
+
+    <label for="postImage">Add an image (optional)</label>
+    <input id="postImage" type="file" accept="image/png,image/jpeg,image/webp">
+
+    <div class="knowledge-form-actions">
+      <button onclick="publishKnowledgePost()">Publish Article</button>
+      <button class="knowledge-cancel" onclick="closeKnowledgeEditor()">Cancel</button>
+    </div>
+    <p id="knowledgeMessage" aria-live="polite"></p>
+  </div>
+</section>
   
   <!-- CONTACT -->
   <section class="page" id="contact">
