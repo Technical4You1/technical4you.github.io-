@@ -2202,3 +2202,50 @@ footer{background:#0e1b30;color:#a9b9cb}.footer-inner{max-width:1200px;margin:au
   }
 }
 
+/* FIX: Move SAP orbit to the right side of Portfolio hero */
+
+.portfolio-hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.portfolio-hero-content {
+  position: relative;
+  z-index: 2;
+  width: 58%;
+  max-width: 620px;
+}
+
+.portfolio-orbit {
+  position: absolute;
+  right: 35px;
+  top: 50%;
+  width: 260px;
+  height: 260px;
+  margin: 0;
+  transform: translateY(-50%);
+  z-index: 3;
+}
+
+@media (max-width: 768px) {
+  .portfolio-hero {
+    flex-direction: column;
+    padding-bottom: 300px;
+  }
+
+  .portfolio-hero-content {
+    width: 100%;
+  }
+
+  .portfolio-orbit {
+    right: 50%;
+    top: auto;
+    bottom: 15px;
+    transform: translateX(50%) scale(.85);
+    transform-origin: bottom center;
+  }
+}
+
