@@ -2083,3 +2083,122 @@ footer{background:#0e1b30;color:#a9b9cb}.footer-inner{max-width:1200px;margin:au
   }
 }
 
+
+/* ==========================================
+   PORTFOLIO - ROTATING SAP ORBIT
+========================================== */
+
+.portfolio-orbit {
+  position: relative;
+  width: 260px;
+  height: 260px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.portfolio-orbit-ring {
+  position: absolute;
+  inset: 5px;
+  border: 1px solid rgba(54, 166, 230, 0.35);
+  border-radius: 50%;
+}
+
+.portfolio-orbit-ring.ring-one {
+  animation: portfolioRingRotate 18s linear infinite;
+}
+
+.portfolio-orbit-ring.ring-two {
+  transform: scaleX(.55);
+}
+
+.portfolio-orbit-ring.ring-three {
+  transform: rotate(90deg) scaleX(.55);
+}
+
+.portfolio-orbit-path {
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(42, 153, 220, .45);
+  border-radius: 50%;
+  animation: portfolioOrbitRotate 12s linear infinite;
+}
+
+.portfolio-orbit-core {
+  position: relative;
+  z-index: 5;
+  width: 82px;
+  height: 82px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 23px;
+  font-weight: 800;
+  background: radial-gradient(circle at 35% 30%, #36b8ff, #07518d 75%);
+  box-shadow: 0 0 35px rgba(22, 139, 220, .65);
+}
+
+.portfolio-orbit-path .orbit-node {
+  position: absolute;
+  z-index: 6;
+  padding: 8px 13px;
+  border: 1px solid #258bc9;
+  border-radius: 25px;
+  color: #b9eaff;
+  background: #102d4b;
+  font-size: 10px;
+  font-weight: 700;
+  white-space: nowrap;
+  animation: portfolioNodeCounterRotate 12s linear infinite;
+}
+
+.portfolio-orbit-path .node-one {
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.portfolio-orbit-path .node-two {
+  top: 50%;
+  right: 8px;
+  transform: translateY(-50%);
+}
+
+.portfolio-orbit-path .node-three {
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.portfolio-orbit-path .node-four {
+  top: 50%;
+  left: 8px;
+  transform: translateY(-50%);
+}
+
+@keyframes portfolioOrbitRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes portfolioNodeCounterRotate {
+  from { rotate: 0deg; }
+  to { rotate: -360deg; }
+}
+
+@keyframes portfolioRingRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-orbit-path,
+  .portfolio-orbit-ring.ring-one,
+  .portfolio-orbit-path .orbit-node {
+    animation: none;
+  }
+}
+
